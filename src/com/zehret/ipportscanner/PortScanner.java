@@ -35,12 +35,12 @@ public class PortScanner {
 		
 		while(true) {
 			while(true) {
-				PL.con("######### MAIN #########");
-				PL.con("# [1] Select Address...#", PL.INFO);
-				PL.con("# [2] All Addresses....#", PL.INFO);
-				PL.con("# [3] Modify Settings..#", PL.INFO);
-				PL.con("# [4] Exit.............#", PL.INFO);
-				PL.con("########################", PL.INFO);
+				PL.con("########## MAIN ##########");
+				PL.con("# [1] Select Address.....#", PL.INFO);
+				PL.con("# [2] All Addresses......#", PL.INFO);
+				PL.con("# [3] Modify Settings....#", PL.INFO);
+				PL.con("# [4] Exit...............#", PL.INFO);
+				PL.con("##########################", PL.INFO);
 				String input = Console.prompt("Option", Console.SHOWINPUTOPTION	, PL.INFO, false);
 				ArrayList<Integer> ports = new ArrayList<Integer>();
 				if(input.equalsIgnoreCase("1")) {
@@ -67,7 +67,7 @@ public class PortScanner {
 					while(true) {
 						input = Console.prompt("Start process? (Y/N)", Console.SHOWINPUTOPTION, PL.INFO, true);
 						if(input.equalsIgnoreCase("Y")) {
-							PL.con(address);
+							//PL.con(address);
 							String[] octets = address.split("\\.");
 							boolean o1 = false, o2 = false, o3 = false, o4 = false;
 							short oct1 = -1, oct2 = -1, oct3 = -1, oct4 = -1;
@@ -101,7 +101,7 @@ public class PortScanner {
 								}catch(NumberFormatException e) {}
 							}
 							
-							PL.con(octets[0] + ">" + octets[1] + ">" + octets[2] + ">" + octets[3]);
+						//	PL.con(octets[0] + ">" + octets[1] + ">" + octets[2] + ">" + octets[3]);
 							
 							
 							Console.setupProgressPopup(0, false);
@@ -130,6 +130,9 @@ public class PortScanner {
 						//	}
 							Console.closeProgressPopup();
 							PL.con("Done.");
+							try {
+								Thread.sleep(1000);
+							}catch(Exception e) {}
 							break;
 						} else if(input.equalsIgnoreCase("N")) {
 							break;
@@ -163,11 +166,17 @@ public class PortScanner {
 							if(settingsPrompt.equalsIgnoreCase("1")) {
 								timeoutMS = Integer.parseInt(promptForSetting("Modify timeout time (Current value: " + timeoutMS + ")","This value adjusts the amount of time taken to attempt to connect to an address/port. Default value: 100ms"));	
 							} else if(settingsPrompt.equalsIgnoreCase("2")) {
+								try {
+									Thread.sleep(1000);
+								}catch(Exception e) {}
 								break;
 							} else {
 								continue;
 							}
 							PL.con("# Setting Updated #");
+							try {
+								Thread.sleep(1000);
+							}catch(Exception e) {}
 						}catch(Exception e) { }
 					}
 				} else if(input.equalsIgnoreCase("4")) {
@@ -240,6 +249,9 @@ public class PortScanner {
 		}
 		PL.con("Done.",PL.INFO,PL.ALERT);
 		Console.closeProgressPopup();
+		try {
+			Thread.sleep(1000);
+		}catch(Exception e) {}
 		
 	}
 	private static void testConnection(short oct1, short oct2, short oct3, short oct4, int port) {
